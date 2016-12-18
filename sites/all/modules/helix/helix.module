@@ -16,13 +16,27 @@ function helix_form() {
         '#title' => 'DNA Helix',
         '#type' => 'textfield',
         '#description' => t('Please enter half of a DNA helix to generate the other half.'),
+        '#required' => TRUE,
     );
-
     $form['submit'] = array(
         '#type' => 'submit',
         '#value' => 'Submit',
     );
     return $form;
+}
+
+function generate_dna($input) {
+    $dna_input_array = str_split(strtoupper($input));
+
+    for ($i = 0; $i < count($dna_input_array); $i++){
+        if($dna_input_array[$i] === 'A') {
+            $dna_input_array[$i] = 'T';
+        }
+        else {
+            $dna_input_array[$i];
+        }
+    }
+    return implode($dna_input_array);
 }
 
 function helix_form_submit($form, &$form_state) {

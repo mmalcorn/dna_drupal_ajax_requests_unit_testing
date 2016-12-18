@@ -1,0 +1,35 @@
+<?php
+class HelixCaseTest extends DrupalUnitTestCase
+{
+    public static function getInfo()
+    {
+        return array(
+            'name' => 'Helix',
+            'description' => 'A form that allows a user to enter half of their DNA helix.  Upon submit, it will generate the other half.',
+            'group' => 'Custom Modules',
+        );
+    }
+
+    function testGenerateDna()
+    {
+        //English description
+        //displays desired result during test
+        $description = 'The other side of a single nucleotide is displayed';
+
+        //Arrange
+        //create input
+        $input = 'A';
+
+        //Act
+        //run the function we're testing with input and store output in $result.
+        $result = generate_dna($input);
+
+        //Assert
+        //This time we're using assertEqual
+        //If the first argument == second argument, test passes.
+        //Again pass in $description for display.
+        $expected_output = 'T';
+        $this->assertEqual($result, $expected_output, $description);
+    }
+
+}

@@ -3,3 +3,5 @@ description = A form that allows a user to enter half of their DNA helix.  Upon 
 package = Custom Modules
 core = 7.x
 files[] = helix.module
+files[] = helix.test
+dependencies[] = simpletest
