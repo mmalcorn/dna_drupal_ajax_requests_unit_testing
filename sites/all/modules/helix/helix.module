@@ -27,10 +27,24 @@ function helix_form() {
 
 function generate_dna($input) {
     $dna_input_array = str_split(strtoupper($input));
+    $converted_dna_array = array();
 
     for ($i = 0; $i < count($dna_input_array); $i++){
         if($dna_input_array[$i] === 'A') {
             $dna_input_array[$i] = 'T';
+            array_push($converted_dna_array, $dna_input_array[$i]);
+        }
+        else if($dna_input_array[$i] === 'T') {
+            $dna_input_array[$i] = 'A';
+            array_push($converted_dna_array, $dna_input_array[$i]);
+        }
+        else if($dna_input_array[$i] === 'C') {
+            $dna_input_array[$i] = 'G';
+            array_push($converted_dna_array, $dna_input_array[$i]);
+        }
+        else if($dna_input_array[$i] === 'G') {
+            $dna_input_array[$i] = 'C';
+            array_push($converted_dna_array, $dna_input_array[$i]);
         }
         else {
             $dna_input_array[$i];

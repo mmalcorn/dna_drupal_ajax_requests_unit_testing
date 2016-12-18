@@ -14,7 +14,7 @@ class HelixCaseTest extends DrupalUnitTestCase
     {
         //English description
         //displays desired result during test
-        $description = 'The other side of a single nucleotide is displayed';
+        $description = 'A single nucleotide shows its opposite - (A) is displayed as (T)';
 
         //Arrange
         //create input
@@ -30,6 +30,20 @@ class HelixCaseTest extends DrupalUnitTestCase
         //Again pass in $description for display.
         $expected_output = 'T';
         $this->assertEqual($result, $expected_output, $description);
+
+
+        $description = 'A single nucleotide shows its opposite - (C) is displayed as (G)';
+        $input = 'C';
+        $result = generate_dna($input);
+        $expected_output = 'G';
+        $this->assertEqual($result, $expected_output, $description);
+
+        $description = 'A sequence of two nucleotides shows its respective opposites - (CT) is displayed as (GA)';
+        $input = 'CT';
+        $result = generate_dna($input);
+        $expected_output = 'GA';
+        $this->assertEqual($result, $expected_output, $description);
+
     }
 
 }
