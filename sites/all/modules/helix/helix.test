@@ -44,6 +44,11 @@ class HelixCaseTest extends DrupalUnitTestCase
         $expected_output = 'GA';
         $this->assertEqual($result, $expected_output, $description);
 
+        $description = 'A sequence of three nucleotides shows its respective opposites - (ACT) is displayed as (TGA)';
+        $input = 'ACT';
+        $result = generate_dna($input);
+        $expected_output = 'TGA';
+        $this->assertEqual($result, $expected_output, $description);
     }
 
 }
