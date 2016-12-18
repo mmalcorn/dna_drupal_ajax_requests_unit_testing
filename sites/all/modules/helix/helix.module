@@ -1,0 +1,34 @@
+<?php
+
+function helix_menu() {
+    $items['double_helix'] = array(
+        'title' => 'Generate DNA Sequence',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('helix_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
+function helix_form() {
+    $form['dna_sequence'] = array(
+        '#title' => 'DNA Helix',
+        '#type' => 'textfield',
+        '#description' => t('Please enter half of a DNA helix to generate the other half.'),
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+    );
+    return $form;
+}
+
+function helix_form_submit($form, &$form_state) {
+    $form_state['redirect'] = 'generated_helix';
+}
+
+function helix_success() {
+    return 'DNA';
+}

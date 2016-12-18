@@ -1,0 +1,5 @@
+name = Helix
+description = A form that allows a user to enter half of their DNA helix.  Upon submit, it will generate the other half.
+package = Custom Modules
+core = 7.x
+files[] = helix.module
