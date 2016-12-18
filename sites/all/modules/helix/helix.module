@@ -8,6 +8,12 @@ function helix_menu() {
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
     );
+    $items['generated_helix'] = array(
+        'title' => 'Helix Results',
+        'page callback' => 'helix_success',
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
     return $items;
 }
 
@@ -25,9 +31,9 @@ function helix_form() {
     return $form;
 }
 
-function generate_dna($input) {
-    $dna_input_array = str_split(strtoupper($input));
-    $converted_dna_array = array();
+function generate_dna($dna_sequence) {
+    $dna_input_array = str_split(strtoupper($dna_sequence));
+    $converted_dna_array = [];
 
     for ($i = 0; $i < count($dna_input_array); $i++){
         if($dna_input_array[$i] === 'A') {
@@ -50,13 +56,18 @@ function generate_dna($input) {
             $dna_input_array[$i];
         }
     }
-    return implode($dna_input_array);
+    return join($converted_dna_array);
 }
 
 function helix_form_submit($form, &$form_state) {
+    $dna_sequence = $form_state['values']['dna_sequence'];
+    $result = generate_dna($dna_sequence);
+    $_SESSION['opposite_helix'] = $result;
+
     $form_state['redirect'] = 'generated_helix';
 }
 
 function helix_success() {
-    return 'DNA';
+    $generated_helix = $_SESSION['opposite_helix'];
+    return '<p>The other side of your helix is: ' . $generated_helix . '</p>';
 }
