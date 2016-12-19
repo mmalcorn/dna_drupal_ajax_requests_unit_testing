@@ -14,7 +14,7 @@ class HelixTests extends DrupalWebTestCase {
         parent::setUp(array('helix'));
     }
 
-    //TODO:TEST 1: Upon clicking submit the user should be taken to a success page
+    //TEST 1: Upon clicking submit the user should be taken to a success page with the results.
 
     public function testHelixFormPageSuccess() {
         $info = array();
@@ -23,13 +23,14 @@ class HelixTests extends DrupalWebTestCase {
         $this->assertText('TAGC', 'The opposite end of the helix should appear on this page');
     }
 
+    //TEST 2: When incorrect values are entered, an error message should show.
+
     public function testHelixFormPageFailure() {
         $info = array();
         $info['dna_sequence'] = 'HEP';
         $this->drupalPost('/double_helix', $info, t('Submit'));
-        $this->assertText('Must enter either A, T, C, or G as values', 'Invalid value');
+        $this->assertText('Invalid value', 'Value must be either A, T, C, or G.');
         }
-    //TODO:TEST 2: When incorrect values are entered, an error message should show.
 
 }
 

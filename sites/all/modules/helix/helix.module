@@ -27,6 +27,7 @@ function helix_form() {
         '#title' => 'DNA Helix',
         '#type' => 'textfield',
         '#description' => t('Please enter half of a DNA helix to generate the other half.'),
+        '#element_validate' => array('element_validate_range'),
         '#required' => TRUE,
     );
     $form['submit'] = array(
@@ -34,6 +35,13 @@ function helix_form() {
         '#value' => 'Submit',
     );
     return $form;
+}
+
+function element_validate_range($element) {
+    $user_input = '/^[AaTtCcGg]+$/';
+    if (!preg_match($user_input, $element['#value'])) {
+        form_error($element, 'Value must be either A, T, C, or G.');
+    }
 }
 
 
@@ -75,8 +83,8 @@ function helix_form_submit($form, &$form_state) {
 
 function helix_success() {
     $generated_helix = $_SESSION['opposite_helix'];
-    echo '<pre>';
-    print_r($generated_helix);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($generated_helix);
+    // echo '</pre>';
     return '<p>The other side of your helix is: ' . $generated_helix . '</p>';
 }
