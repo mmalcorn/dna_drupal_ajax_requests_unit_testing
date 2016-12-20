@@ -3,3 +3,4 @@ description = Display nodes with Ajax.
 package = Custom Modules
 core = 7.x
 files[] = dna_ajax.module
+files[] = dna.module

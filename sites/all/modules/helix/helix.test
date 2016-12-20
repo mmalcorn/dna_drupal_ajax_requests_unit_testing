@@ -29,7 +29,7 @@ class HelixTests extends DrupalWebTestCase {
         $info = array();
         $info['dna_sequence'] = 'HEP';
         $this->drupalPost('/double_helix', $info, t('Submit'));
-        $this->assertText('Invalid value', 'Value must be either A, T, C, or G.');
+        $this->assertText('Value must be either A, T, C, or G.', 'User should not be redirected to the results page - an error will show at the top of form');
         }
 
 }
